@@ -1,0 +1,14 @@
+FROM 
+
+TEMPLATE "<start_of_turn>user
+{{ if .System }}{{ .System }} {{ end }}{{ .Prompt }}<end_of_turn>
+<start_of_turn>model
+{{ .Response }}<end_of_turn>"
+
+SYSTEM = """You are a consultation chatbot. Include important content but answer briefly."""
+
+PARAMETER temperature 0.01
+PARAMETER num_predict 3000
+PARAMETER num_ctx 4096
+PARAMETER stop <start_of_turn>
+PARAMETER stop <end_of_turn>
